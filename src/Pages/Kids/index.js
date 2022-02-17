@@ -22,11 +22,18 @@ const Kids = (props) => {
             <h1>KIDS</h1>
           </div>
           <div className="row">
-            {products.map((product, pos) => {
+            {products.map((product, index) => {
               const configProduct = {
                 ...product,
               };
-              return <Products key={pos} {...configProduct} />;
+              return (
+                <div
+                  className="col-lg-4 col-md-6 col-sm-6 col-xs-12"
+                  key={index}
+                >
+                  <Products {...configProduct} />
+                </div>
+              );
             })}
           </div>
         </div>
