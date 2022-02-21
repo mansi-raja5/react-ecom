@@ -4,7 +4,7 @@ import ProductGallary from "../ProductGallary";
 import "./style.scss";
 
 const Product = (props) => {
-  const renderHTML = (rawHTML: string) =>
+  const renderHTML = (rawHTML) =>
     React.createElement("p", {
       dangerouslySetInnerHTML: { __html: rawHTML },
     });
