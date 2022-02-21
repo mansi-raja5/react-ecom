@@ -18,6 +18,7 @@ import Men from "./Pages/Men";
 import Kids from "./Pages/Kids";
 import Cart from "./Pages/Cart";
 import Checkout from "./Pages/Checkout";
+import ProductDetails from "./Pages/ProductDetails";
 import Header from "./components/Header";
 
 //css
@@ -57,6 +58,7 @@ function App() {
               <Route path="/kids" element={<Kids />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkout" element={<Checkout />} />
+              <Route path="/product/:productID" element={<ProductDetails />} />
             </Routes>
           </Router>
         </MainLayout>
