@@ -1,8 +1,22 @@
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./style.scss";
 import logo from "./../../assets/logo.png";
 
-const Header = (props) => {
+import { connect } from "react-redux";
+
+const Header = ({ cart }) => {
+  const [cartCount, setCartCount] = useState(0);
+
+  useEffect(() => {
+    let count = 0;
+    for (var i = 0; i < cart.length; i++) {
+      count += cart[i].qty;
+    }
+
+    setCartCount(count);
+  }, [cart, cartCount]);
+
   return (
     <header className="header">
       <div className="wrap">
@@ -42,8 +56,15 @@ const Header = (props) => {
         <div className="actions">
           <ul>
             <li>
-              <NavLink to="/cart">
-                <i className="fas fa-shopping-cart"></i>
+              <NavLink
+                to="/cart"
+                className="cart position-relative d-inline-flex"
+                aria-label="View your shopping cart"
+              >
+                <i className="fas fa fa-shopping-cart fa-lg"></i>
+                <span className="cart-basket d-flex align-items-center justify-content-center">
+                  {cartCount}
+                </span>
               </NavLink>
             </li>
           </ul>
@@ -53,4 +74,10 @@ const Header = (props) => {
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => {
+  return {
+    cart: state.shop.cart,
+  };
+};
+
+export default connect(mapStateToProps)(Header);

@@ -91,6 +91,21 @@
           text-transform: uppercase;
           cursor: pointer;
         }
+
+        .cart {
+          position: relative;
+          span {
+            background-color: #5ece7b;
+            padding: 5px;
+            border-radius: 50%;
+            position: absolute;
+            color: #ffffff;
+            height: 25px;
+            width: 25px;
+            top: -12px;
+            right: -12px;
+          }
+        }
       }
     }
   }

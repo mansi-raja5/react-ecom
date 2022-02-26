@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import "./style.scss";
+import Button from "../Button";
 
-const Products = (product) => {
+import { connect } from "react-redux";
+import { addToCart } from "../../redux/Shopping/shopping-actions";
+
+const Products = ({ product, addToCart }) => {
   const { id, name, gallery, prices } = product;
   return (
     <div className="card m-5">
@@ -11,7 +15,9 @@ const Products = (product) => {
         </Link>
       </div>
       <div className="cart">
-        <i className="fa fa-shopping-cart"></i>
+        <Button onClick={() => addToCart(id)}>
+          <i className="fa fa-shopping-cart"></i>
+        </Button>
       </div>
       <div className="product-details">
         <span>
@@ -25,5 +31,10 @@ const Products = (product) => {
     </div>
   );
 };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addToCart: (id) => dispatch(addToCart(id)),
+  };
+};
 
-export default Products;
+export default connect(null, mapDispatchToProps)(Products);
