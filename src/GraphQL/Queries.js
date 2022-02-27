@@ -8,6 +8,7 @@ export const LOAD_ALL_PRODUCTS = gql`
         id
         name
         inStock
+        brand
         gallery
         prices {
           currency {
