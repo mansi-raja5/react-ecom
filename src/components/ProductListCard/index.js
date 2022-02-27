@@ -5,7 +5,7 @@ import Button from "../Button";
 import { connect } from "react-redux";
 import { addToCart } from "../../redux/Shopping/shopping-actions";
 
-const Products = ({ product, addToCart }) => {
+const ProductListCard = ({ product, addToCart }) => {
   const { id, name, gallery, prices } = product;
   return (
     <div className="card m-5">
@@ -37,4 +37,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Products);
+export default connect(null, mapDispatchToProps)(ProductListCard);
