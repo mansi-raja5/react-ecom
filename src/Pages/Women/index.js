@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { LOAD_ALL_PRODUCTS } from "../../GraphQL/Queries";
 
-import Products from "../../components/Products";
+import ProductListCard from "../../components/ProductListCard";
 
 import "./style.scss";
 
@@ -32,7 +32,7 @@ const Women = (props) => {
                   className="col-lg-4 col-md-6 col-sm-6 col-xs-12"
                   key={index}
                 >
-                  <Products {...configProduct} />
+                  <ProductListCard {...configProduct} />
                 </div>
               );
             })}
