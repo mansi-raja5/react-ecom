@@ -19,15 +19,7 @@ export const addToCart = (itemID) => {
   };
 };
 
-export const removeFromCart = (itemID) => {
-  return {
-    type: actionTypes.REMOVE_FROM_CART,
-    payload: {
-      id: itemID,
-    },
-  };
-};
-
+//increment - decrement qty on the cart
 export const adjustItemQty = (itemID, qty) => {
   return {
     type: actionTypes.ADJUST_ITEM_QTY,
@@ -35,12 +27,5 @@ export const adjustItemQty = (itemID, qty) => {
       id: itemID,
       qty,
     },
-  };
-};
-
-export const loadCurrentItem = (item) => {
-  return {
-    type: actionTypes.LOAD_CURRENT_ITEM,
-    payload: item,
   };
 };
