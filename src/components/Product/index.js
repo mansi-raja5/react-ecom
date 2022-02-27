@@ -1,18 +1,18 @@
 import React from "react";
 import Button from "../Button";
-import ProductGallary from "../ProductGallary";
+import ProductGallary from "./ProductGallary";
 import "./style.scss";
 
-const Product = (props) => {
+import { connect } from "react-redux";
+import { addToCart } from "../../redux/Shopping/shopping-actions";
+
+const Product = ({ product, addToCart }) => {
   const renderHTML = (rawHTML) =>
     React.createElement("p", {
       dangerouslySetInnerHTML: { __html: rawHTML },
     });
 
-  const addToCart = () => {};
-
-  const { gallery, name, prices, description, brand, attributes } =
-    props.product;
+  const { id, gallery, name, prices, description, brand, attributes } = product;
 
   return (
     <div className="container mt-5 mb-5">
@@ -52,7 +52,7 @@ const Product = (props) => {
                 </div>
 
                 <div className="cart mt-5 align-items-center">
-                  <Button onClick={addToCart}>Add to cart</Button>
+                  <Button onClick={() => addToCart(id)}>Add to cart</Button>
                 </div>
                 <div className="about mt-5">{renderHTML(description)}</div>
               </div>
@@ -64,4 +64,10 @@ const Product = (props) => {
   );
 };
 
-export default Product;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addToCart: (id) => dispatch(addToCart(id)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Product);
