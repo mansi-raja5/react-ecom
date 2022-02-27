@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { LOAD_ALL_PRODUCTS } from "../../GraphQL/Queries";
 
-import Products from "../../components/Products";
+import Products from "../../components/ProductListCard";
 import "./style.scss";
 
 import { connect } from "react-redux";
