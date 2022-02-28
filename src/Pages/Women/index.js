@@ -10,7 +10,6 @@ const Women = (props) => {
   const { data } = useQuery(LOAD_ALL_PRODUCTS);
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    console.log(data);
     if (data) {
       setProducts(data.category.products);
     }

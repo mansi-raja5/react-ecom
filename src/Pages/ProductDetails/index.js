@@ -12,7 +12,6 @@ const ProductDetails = (props) => {
   if (loading) return null;
   if (error) return `Error! ${error}`;
 
-  console.log(data);
   return (
     <div>
       <Product product={data.product} />
