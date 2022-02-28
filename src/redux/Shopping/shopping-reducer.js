@@ -27,10 +27,21 @@ const shopReducer = (state = INITIAL_STATE, action) => {
         cart: inCart
           ? state.cart.map((item) =>
               item.id === action.payload.id
-                ? { ...item, qty: item.qty + 1 }
+                ? {
+                    ...item,
+                    qty: item.qty + 1,
+                    attributes: action.payload.selectedItemAttributes,
+                  }
                 : item
             )
-          : [...state.cart, { ...item, qty: 1 }],
+          : [
+              ...state.cart,
+              {
+                ...item,
+                qty: 1,
+                attributes: action.payload.selectedItemAttributes,
+              },
+            ],
       };
     case actionTypes.ADJUST_ITEM_QTY:
       if (action.payload.qty == 0) {

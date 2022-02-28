@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../Button";
 import ProductGallary from "./ProductGallary";
 import "./style.scss";
@@ -13,6 +13,16 @@ const Product = ({ product, addToCart }) => {
     });
 
   const { id, gallery, name, prices, description, brand, attributes } = product;
+  const [selectedAttributes, setSelectedAttributes] = useState([]);
+
+  const onRadioChangeHandler = (e) => {
+    setSelectedAttributes((prevSelectedAttributes) => {
+      return [
+        ...prevSelectedAttributes,
+        { key: e.target.name, name: e.target.name, value: e.target.value },
+      ];
+    });
+  };
 
   return (
     <div className="container mt-5 mb-5">
@@ -36,7 +46,12 @@ const Product = ({ product, addToCart }) => {
                       <h3 className="text-uppercase">{attribute.name}</h3>
                       {attribute.items.map((item) => (
                         <label className="radio" key={item.id}>
-                          <input type="radio" name="size" value={item.value} />
+                          <input
+                            type="radio"
+                            name={attribute.name}
+                            value={item.value}
+                            onChange={onRadioChangeHandler}
+                          />
                           <span>{item.displayValue}</span>
                         </label>
                       ))}
@@ -52,7 +67,9 @@ const Product = ({ product, addToCart }) => {
                 </div>
 
                 <div className="cart mt-5 align-items-center">
-                  <Button onClick={() => addToCart(id)}>Add to cart</Button>
+                  <Button onClick={() => addToCart(id, selectedAttributes)}>
+                    Add to cart
+                  </Button>
                 </div>
                 <div className="about mt-5">{renderHTML(description)}</div>
               </div>
@@ -66,7 +83,8 @@ const Product = ({ product, addToCart }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addToCart: (id) => dispatch(addToCart(id)),
+    addToCart: (id, selectedAttributes) =>
+      dispatch(addToCart(id, selectedAttributes)),
   };
 };
 

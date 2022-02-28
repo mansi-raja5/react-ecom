@@ -6,7 +6,15 @@ import { connect } from "react-redux";
 import { addToCart } from "../../redux/Shopping/shopping-actions";
 
 const ProductListCard = ({ product, addToCart }) => {
-  const { id, name, gallery, prices } = product;
+  const { id, name, gallery, prices, attributes } = product;
+  let selectedAttributes = [];
+  attributes.map((attribute) => {
+    selectedAttributes.push({
+      key: attribute.id,
+      name: attribute.name,
+      value: attribute.items[0].value, //set first attribute vale as a default for now
+    });
+  });
   return (
     <div className="card m-5">
       <div className="product-image">
@@ -15,7 +23,7 @@ const ProductListCard = ({ product, addToCart }) => {
         </Link>
       </div>
       <div className="cart">
-        <Button onClick={() => addToCart(id)}>
+        <Button onClick={() => addToCart(id, selectedAttributes)}>
           <i className="fa fa-shopping-cart"></i>
         </Button>
       </div>
@@ -33,7 +41,8 @@ const ProductListCard = ({ product, addToCart }) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    addToCart: (id) => dispatch(addToCart(id)),
+    addToCart: (id, selectedAttributes) =>
+      dispatch(addToCart(id, selectedAttributes)),
   };
 };
 

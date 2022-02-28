@@ -17,6 +17,7 @@ function CartItem({ cartItem, adjustQty }) {
     setQty(updatedQty);
     adjustQty(cartItem.id, updatedQty);
   };
+  const onRadioChangeHandler = () => {};
   return (
     <div className="row d-flex justify-content-between align-items-center cart-item pt-5 pb-5">
       <div className="col-lg-9">
@@ -32,6 +33,24 @@ function CartItem({ cartItem, adjustQty }) {
             {cartItem.prices[0].amount}
           </h3>
         </span>
+        {
+          //change this to selected radio later on
+        }
+        {cartItem.attributes.map((attribute) => (
+          <div className="mt-1 d-block" key={attribute.key}>
+            <h3>{attribute.name}</h3>
+            <label className="radio">
+              <input
+                type="radio"
+                name={attribute.key}
+                value={attribute.value}
+                onChange={onRadioChangeHandler}
+                checked
+              />
+              <span>{attribute.value}</span>
+            </label>
+          </div>
+        ))}
       </div>
       <div className="col-lg-1">
         <Button onClick={incrementQty}>

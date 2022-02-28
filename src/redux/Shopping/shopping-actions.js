@@ -9,12 +9,12 @@ export const setAllProducts = (products) => {
   };
 };
 
-export const addToCart = (itemID) => {
-  console.log(itemID);
+export const addToCart = (itemID, selectedAttributes) => {
   return {
     type: actionTypes.ADD_TO_CART,
     payload: {
       id: itemID,
+      selectedItemAttributes: selectedAttributes,
     },
   };
 };

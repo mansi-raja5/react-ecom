@@ -16,6 +16,16 @@ export const LOAD_ALL_PRODUCTS = gql`
           }
           amount
         }
+        attributes {
+          id
+          name
+          type
+          items {
+            displayValue
+            value
+            id
+          }
+        }
       }
     }
   }
