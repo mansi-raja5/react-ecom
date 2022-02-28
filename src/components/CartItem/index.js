@@ -28,7 +28,7 @@ function CartItem({ cartItem, adjustQty }) {
           <h3>{cartItem.brand}</h3>
         </span>
         <span className="text-uppercase mt-2 d-block">
-          <h3>
+          <h3 className="pb-2">
             {cartItem.prices[0].currency.symbol}
             {cartItem.prices[0].amount}
           </h3>
@@ -47,7 +47,11 @@ function CartItem({ cartItem, adjustQty }) {
                 onChange={onRadioChangeHandler}
                 checked
               />
-              <span>{attribute.value}</span>
+              {attribute.type == "swatch" ? (
+                <span style={{ backgroundColor: attribute.value }}></span>
+              ) : (
+                <span>{attribute.value}</span>
+              )}
             </label>
           </div>
         ))}

@@ -12,6 +12,7 @@ const ProductListCard = ({ product, addToCart }) => {
     selectedAttributes.push({
       key: attribute.id,
       name: attribute.name,
+      type: attribute.type,
       value: attribute.items[0].value, //set first attribute vale as a default for now
     });
   });
