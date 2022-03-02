@@ -19,7 +19,7 @@ const Header = ({ cart }) => {
 
   return (
     <header className="header">
-      <div className="wrap">
+      <div className="container">
         <nav className="mainMenu">
           <ul>
             <li>
@@ -58,13 +58,11 @@ const Header = ({ cart }) => {
             <li>
               <NavLink
                 to="/cart"
-                className="cart position-relative d-inline-flex"
+                className="cart"
                 aria-label="View your shopping cart"
               >
                 <i className="fas fa fa-shopping-cart fa-lg"></i>
-                <span className="cart-basket d-flex align-items-center justify-content-center">
-                  {cartCount}
-                </span>
+                <span class="badge"> {cartCount} </span>
               </NavLink>
             </li>
           </ul>
