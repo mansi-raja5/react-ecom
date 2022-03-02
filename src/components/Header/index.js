@@ -62,7 +62,7 @@ const Header = ({ cart }) => {
                 aria-label="View your shopping cart"
               >
                 <i className="fas fa fa-shopping-cart fa-lg"></i>
-                <span class="badge"> {cartCount} </span>
+                <span className="badge"> {cartCount} </span>
               </NavLink>
             </li>
           </ul>
