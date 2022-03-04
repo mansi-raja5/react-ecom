@@ -1,37 +1,47 @@
 import React, { useEffect, useState } from "react";
+
 import { useQuery } from "@apollo/client";
 import { LOAD_ALL_PRODUCTS } from "../../GraphQL/Queries";
 
 import ProductListCard from "../../components/ProductListCard";
-
 import "./style.scss";
 
-const Women = (props) => {
-  const { data } = useQuery(LOAD_ALL_PRODUCTS);
+import { connect } from "react-redux";
+import { setAllProducts } from "../../redux/Shopping/shopping-actions";
+
+const ProductList = ({ setAllProducts }) => {
+  const { loading, error, data } = useQuery(LOAD_ALL_PRODUCTS, {
+    variables: {
+      input: { title: "clothes" },
+    },
+  });
+
   const [products, setProducts] = useState([]);
   useEffect(() => {
     if (data) {
       setProducts(data.category.products);
+      setAllProducts(data.category.products);
     }
   }, [data]);
+
+  if (loading) return null;
+  if (error) return `Error! ${error}`;
+
   return (
     <section className="section-products">
       <div className="wrapper">
         <div className="container">
           <div className="page-title">
-            <h1>WOMEN</h1>
+            <h1>MEN</h1>
           </div>
           <div className="row">
             {products.map((product, index) => {
-              const configProduct = {
-                ...product,
-              };
               return (
                 <div
                   className="col-lg-4 col-md-6 col-sm-6 col-xs-12"
                   key={index}
                 >
-                  <ProductListCard {...configProduct} />
+                  <ProductListCard product={product} />
                 </div>
               );
             })}
@@ -42,4 +52,10 @@ const Women = (props) => {
   );
 };
 
-export default Women;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setAllProducts: (products) => dispatch(setAllProducts(products)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(ProductList);

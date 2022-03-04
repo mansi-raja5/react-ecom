@@ -25,25 +25,25 @@ const Header = ({ cart }) => {
             <li>
               <NavLink
                 className={({ isActive }) => (isActive ? "active" : "")}
-                to="/women"
+                to="/all"
               >
-                WOMEN
+                ALL
               </NavLink>
             </li>
             <li>
               <NavLink
                 className={({ isActive }) => (isActive ? "active" : "")}
-                to="/men"
+                to="/clothes"
               >
-                MEN
+                CLOTHES
               </NavLink>
             </li>
             <li>
               <NavLink
                 className={({ isActive }) => (isActive ? "active" : "")}
-                to="/kids"
+                to="/tech"
               >
-                KIDS
+                TECH
               </NavLink>
             </li>
           </ul>
