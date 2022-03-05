@@ -13,19 +13,17 @@ const Product = ({ product, addToCart }) => {
     });
 
   const { id, gallery, name, prices, description, brand, attributes } = product;
-  const [selectedAttributes, setSelectedAttributes] = useState([]);
+  const [selectedAttributes, setSelectedAttributes] = useState({});
 
   const onRadioChangeHandler = (e) => {
-    setSelectedAttributes((prevSelectedAttributes) => {
-      return [
-        ...prevSelectedAttributes,
-        {
-          key: e.target.name,
-          name: e.target.name,
-          type: e.target.dataset.attributetype,
-          value: e.target.value,
-        },
-      ];
+    setSelectedAttributes(() => {
+      selectedAttributes[e.target.name] = {
+        key: e.target.name,
+        name: e.target.name,
+        type: e.target.dataset.attributetype,
+        value: e.target.value,
+      };
+      return selectedAttributes;
     });
   };
   return (
@@ -57,7 +55,7 @@ const Product = ({ product, addToCart }) => {
                             data-attributetype={attribute.type}
                             onChange={onRadioChangeHandler}
                           />
-                          {attribute.type == "swatch" ? (
+                          {attribute.type === "swatch" ? (
                             <span
                               style={{ backgroundColor: item.value }}
                             ></span>

@@ -36,21 +36,28 @@ function CartItem({ cartItem, adjustQty }) {
         {
           //change this to selected radio later on
         }
-        {cartItem.attributes.map((attribute) => (
-          <div className="mt-1 d-block" key={attribute.key}>
-            <h3>{attribute.name}</h3>
+        {Object.keys(cartItem.attributes).map((attribute) => (
+          <div
+            className="mt-1 d-block"
+            key={cartItem.attributes[attribute].key}
+          >
+            <h3>{cartItem.attributes[attribute].name}</h3>
             <label className="radio">
               <input
                 type="radio"
-                name={attribute.key}
-                value={attribute.value}
+                name={cartItem.attributes[attribute].key}
+                value={cartItem.attributes[attribute].value}
                 onChange={onRadioChangeHandler}
                 checked
               />
-              {attribute.type == "swatch" ? (
-                <span style={{ backgroundColor: attribute.value }}></span>
+              {cartItem.attributes[attribute].type === "swatch" ? (
+                <span
+                  style={{
+                    backgroundColor: cartItem.attributes[attribute].value,
+                  }}
+                ></span>
               ) : (
-                <span>{attribute.value}</span>
+                <span>{cartItem.attributes[attribute].value}</span>
               )}
             </label>
           </div>
