@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { addToCart } from "../../redux/Shopping/shopping-actions";
 
 const ProductListCard = ({ product, addToCart }) => {
-  const { id, name, gallery, prices, attributes } = product;
+  const { id, name, gallery, prices, attributes, inStock } = product;
   let selectedAttributes = [];
   attributes.map((attribute) => {
     selectedAttributes.push({
@@ -23,11 +23,20 @@ const ProductListCard = ({ product, addToCart }) => {
           <img src={gallery[0]} alt={name} />
         </Link>
       </div>
-      <div className="cart">
-        <Button onClick={() => addToCart(id, selectedAttributes)}>
-          <i className="fa fa-shopping-cart"></i>
-        </Button>
-      </div>
+
+      {inStock ? (
+        <div className="cart">
+          <Button onClick={() => addToCart(id, selectedAttributes)}>
+            <i className="fa fa-shopping-cart"></i>
+          </Button>
+        </div>
+      ) : (
+        <div className="cart cart-disabled">
+          <Button disabled={true}>
+            <i className="fa fa-shopping-cart"></i>
+          </Button>
+        </div>
+      )}
       <div className="product-details">
         <span>
           <Link to={`/product/${id}`}>{name}</Link>

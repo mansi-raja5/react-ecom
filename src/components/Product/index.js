@@ -12,7 +12,8 @@ const Product = ({ product, addToCart }) => {
       dangerouslySetInnerHTML: { __html: rawHTML },
     });
 
-  const { id, gallery, name, prices, description, brand, attributes } = product;
+  const { id, gallery, name, prices, description, brand, attributes, inStock } =
+    product;
   const [selectedAttributes, setSelectedAttributes] = useState({});
 
   const onRadioChangeHandler = (e) => {
@@ -76,9 +77,13 @@ const Product = ({ product, addToCart }) => {
                 </div>
 
                 <div className="cart mt-5 align-items-center">
-                  <Button onClick={() => addToCart(id, selectedAttributes)}>
-                    Add to cart
-                  </Button>
+                  {inStock ? (
+                    <Button onClick={() => addToCart(id, selectedAttributes)}>
+                      Add to cart
+                    </Button>
+                  ) : (
+                    <Button disabled={true}>Out Of Stock</Button>
+                  )}
                 </div>
                 <div className="about mt-5">{renderHTML(description)}</div>
               </div>
