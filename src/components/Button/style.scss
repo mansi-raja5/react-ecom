@@ -6,12 +6,14 @@
   border: 1px solid #5ece7b;
   margin: auto 2px;
   width: 100%;
-}
 
-.button:hover,
-.button:active {
-  background: #5ece7b;
-  border-color: #5ece7b;
+  &:hover {
+    background: lighten(#5ece7b, 3%);
+  }
+
+  &:active {
+    background: lighten(#5ece7b, 3%);
+  }
 }
 
 .button:focus {
