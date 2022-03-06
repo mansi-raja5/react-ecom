@@ -4,9 +4,9 @@ This is simple E-commerce application made in react using apollo client and redu
 
 # How To Run
 
-1. Download the zip file
+1. Download the zip file or Clone the repo from `main` branch
 2. Run `npm install`
-3. Run GraphQl BackEnd Server
+3. Run GraphQl BackEnd Server on `http://localhost:4000/`
 4. Run `npm start`
 
 # Dependencies
