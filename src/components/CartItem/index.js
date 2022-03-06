@@ -76,7 +76,7 @@ function CartItem({ cartItem, adjustQty, isMiniCart = false }) {
           <i className="fas fa-minus"></i>
         </Button>
       </div>
-      <div className={isMiniCart ? "col-lg-5" : "col-lg-1"}>
+      <div className={isMiniCart ? "col-lg-5" : "col-lg-2"}>
         <img
           src={cartItem.gallery[0]}
           className="img-fluid rounded-3"
