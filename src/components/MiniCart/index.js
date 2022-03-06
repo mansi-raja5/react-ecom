@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { addToCart } from "../../redux/Shopping/shopping-actions";
 
 const MiniCart = ({ showMiniCart, cart, onVeiwBagData }) => {
+  let bagSum = 0;
   return (
     <div>
       <div
@@ -16,15 +17,18 @@ const MiniCart = ({ showMiniCart, cart, onVeiwBagData }) => {
       >
         <div className="container">
           <div className="mini-cart">
-            <div className="row mt-5">
+            <div className="row mt-1 mb-1">
               <div className="col-lg-12">
-                <span>My Bag:</span>
-                <span>2 Items</span>
+                <span>
+                  <b>My Bag: </b>
+                </span>
+                <span>{cart.length} Items</span>
               </div>
             </div>
             <ul className="mini-cart-items">
               {cart.length ? (
                 cart.map((cartItem) => {
+                  bagSum += cartItem.prices[0].amount * cartItem.qty;
                   return (
                     <CartItem
                       key={cartItem.id}
@@ -37,10 +41,19 @@ const MiniCart = ({ showMiniCart, cart, onVeiwBagData }) => {
                 <div>NO ITEMS IN THE CART</div>
               )}
             </ul>
-            <div className="row mt-5">
-              <div className="col-lg-12">
-                <span>Total:</span>
-                <span>Total:</span>
+            <div className="row pt-5">
+              <div className="col-lg-6">
+                <span>
+                  <b>Total:</b>
+                </span>
+              </div>
+              <div className="col-lg-6">
+                <span className="float-end">
+                  <b>
+                    {cart.length ? cart[0].prices[0].currency.symbol : ""}
+                    {bagSum ? parseFloat(bagSum).toFixed(2) : ""}
+                  </b>
+                </span>
               </div>
             </div>
             <div className="row pt-5">
