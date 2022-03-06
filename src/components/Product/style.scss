@@ -20,7 +20,7 @@ label.radio {
   input:checked + span {
     border-color: #000000;
     background-color: #000000;
-    color: #fff;
+    color: #fff !important;
     padding: 15px 25px;
   }
 }
