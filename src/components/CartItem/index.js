@@ -5,7 +5,7 @@ import "./style.scss";
 import { connect } from "react-redux";
 import { adjustItemQty } from "../../redux/Shopping/shopping-actions";
 
-function CartItem({ cartItem, adjustQty }) {
+function CartItem({ cartItem, adjustQty, isMiniCart = false }) {
   const [qty, setQty] = useState(cartItem.qty);
   const incrementQty = () => {
     const updatedQty = qty + 1;
@@ -19,8 +19,12 @@ function CartItem({ cartItem, adjustQty }) {
   };
   const onRadioChangeHandler = () => {};
   return (
-    <div className="row d-flex justify-content-between align-items-center cart-item pt-5 pb-5">
-      <div className="col-lg-9">
+    <div
+      className={`row d-flex justify-content-between align-items-center ${
+        isMiniCart ? "minicart-item" : "cart-item pt-5 pb-5"
+      }`}
+    >
+      <div className={isMiniCart ? "col-lg-5" : "col-lg-9"}>
         <span className="text-uppercase mt-5 d-block">
           <h2>{cartItem.name}</h2>
         </span>
@@ -72,7 +76,7 @@ function CartItem({ cartItem, adjustQty }) {
           <i className="fas fa-minus"></i>
         </Button>
       </div>
-      <div className="col-lg-2">
+      <div className={isMiniCart ? "col-lg-5" : "col-lg-1"}>
         <img
           src={cartItem.gallery[0]}
           className="img-fluid rounded-3"
