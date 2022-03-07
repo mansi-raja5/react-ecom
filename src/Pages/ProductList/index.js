@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 import { useQuery } from "@apollo/client";
 import { LOAD_ALL_PRODUCTS } from "../../GraphQL/Queries";
@@ -10,6 +11,8 @@ import { connect } from "react-redux";
 import { setAllProducts } from "../../redux/Shopping/shopping-actions";
 
 const ProductList = ({ setAllProducts }) => {
+  const { catID } = useParams();
+
   const { loading, error, data } = useQuery(LOAD_ALL_PRODUCTS, {
     variables: {
       input: { title: "clothes" },
@@ -31,8 +34,8 @@ const ProductList = ({ setAllProducts }) => {
     <section className="section-products">
       <div className="wrapper">
         <div className="container">
-          <div className="page-title">
-            <h1>MEN</h1>
+          <div className="page-title text-uppercase">
+            <h1>{catID}</h1>
           </div>
           <div className="row">
             {products.map((product, index) => {
