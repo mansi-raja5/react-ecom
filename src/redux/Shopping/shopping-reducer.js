@@ -3,6 +3,10 @@ import * as actionTypes from "./shopping-types";
 const INITIAL_STATE = {
   products: [],
   cart: [],
+  currency: {
+    symbol: "$",
+    label: "USD",
+  },
 };
 
 const shopReducer = (state = INITIAL_STATE, action) => {

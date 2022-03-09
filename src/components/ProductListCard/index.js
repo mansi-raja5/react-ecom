@@ -5,7 +5,7 @@ import Button from "../Button";
 import { connect } from "react-redux";
 import { addToCart } from "../../redux/Shopping/shopping-actions";
 
-const ProductListCard = ({ product, addToCart }) => {
+const ProductListCard = ({ product, addToCart, currency }) => {
   const { id, name, gallery, prices, attributes, inStock } = product;
   let selectedAttributes = [];
   attributes.map((attribute) => {
@@ -16,6 +16,8 @@ const ProductListCard = ({ product, addToCart }) => {
       value: attribute.items[0].value, //set first attribute vale as a default for now
     });
   });
+  // debugger;
+  const sym = prices.find((price) => price.currency.symbol === currency.symbol);
   return (
     <div className="card m-5">
       <div className="product-image">
@@ -42,8 +44,8 @@ const ProductListCard = ({ product, addToCart }) => {
           <Link to={`/product/${id}`}>{name}</Link>
         </span>
         <span className="fw-bolder d-block">
-          {prices[0].currency.symbol}
-          {prices[0].amount}
+          {sym.currency.symbol}
+          {sym.amount}
         </span>
       </div>
     </div>
@@ -56,4 +58,10 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(ProductListCard);
+const mapStateToProps = (state) => {
+  return {
+    currency: state.shop.currency,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductListCard);
