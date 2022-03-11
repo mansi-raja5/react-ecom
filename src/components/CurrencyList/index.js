@@ -7,7 +7,7 @@ import { CURRENCIES } from "../../GraphQL/Queries";
 import { connect } from "react-redux";
 import { setCurrency } from "../../redux/Shopping/shopping-actions";
 
-const CurrencyList = ({ showCurrencyList, currency }) => {
+const CurrencyList = ({ showCurrencyList, setCurrency, currency }) => {
   const { loading, error, data } = useQuery(CURRENCIES);
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
