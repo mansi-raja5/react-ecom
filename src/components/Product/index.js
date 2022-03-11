@@ -40,17 +40,17 @@ const Product = ({ product, addToCart, currency }) => {
   };
   const sym = prices.find((price) => price.currency.symbol === currency.symbol);
   return (
-    <div className="container mt-5 mb-5">
-      <div className="row d-flex justify-content-center">
+    <div className="container  mb-5">
+      <div className="row d-flex justify-content-center product-detail">
         <div className="col-md-12">
           <div className="row">
             <div className="col-md-8">
               <ProductGallary gallery={gallery} productName={name} />
             </div>
             <div className="col-md-4">
-              <div className="product p-4">
-                <div className="mt-4 mb-3">
-                  <span className="text-uppercase mt-5 d-block">
+              <div className="product">
+                <div className="mb-3">
+                  <span className="text-uppercase d-block">
                     <h2>{name}</h2>
                   </span>
                   <span className="text-uppercase text-muted mt-5 d-block">
