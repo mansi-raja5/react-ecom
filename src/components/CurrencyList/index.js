@@ -7,7 +7,12 @@ import { CURRENCIES } from "../../GraphQL/Queries";
 import { connect } from "react-redux";
 import { setCurrency } from "../../redux/Shopping/shopping-actions";
 
-const CurrencyList = ({ showCurrencyList, setCurrency, currency, setShowCurrencyList }) => {
+const CurrencyList = ({
+  showCurrencyList,
+  setCurrency,
+  currency,
+  setShowCurrencyList,
+}) => {
   const { loading, error, data } = useQuery(CURRENCIES);
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
@@ -19,12 +24,11 @@ const CurrencyList = ({ showCurrencyList, setCurrency, currency, setShowCurrency
     };
     setCurrency(selectedCurrency);
     setShowCurrencyList(0);
-
   };
   return (
     <div>
       <div
-        className="overlay"
+        className="currency-dropdown"
         style={{ display: showCurrencyList ? "block" : "none" }}
       >
         <div className="container">
