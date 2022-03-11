@@ -14,7 +14,18 @@ const Product = ({ product, addToCart, currency }) => {
 
   const { id, gallery, name, prices, description, brand, attributes, inStock } =
     product;
-  const [selectedAttributes, setSelectedAttributes] = useState({});
+
+  const defaultAttribute = [
+    {
+      key: attributes[0].items[0].id,
+      name: attributes[0].items[0].id,
+      type: attributes[0].type,
+      value: attributes[0].items[0].value,
+    },
+  ];
+
+  const [selectedAttributes, setSelectedAttributes] =
+    useState(defaultAttribute);
 
   const onRadioChangeHandler = (e) => {
     setSelectedAttributes(() => {
@@ -48,29 +59,49 @@ const Product = ({ product, addToCart, currency }) => {
                   {attributes.map((attribute) => (
                     <div className="mt-5 d-block" key={attribute.id}>
                       <h3 className="text-uppercase">{attribute.name}</h3>
-                      {attribute.items.map((item) => (
-                        <label className="radio" key={item.id}>
-                          <input
-                            type="radio"
-                            name={attribute.name}
-                            value={item.value}
-                            data-attributetype={attribute.type}
-                            onChange={onRadioChangeHandler}
-                          />
-                          {attribute.type === "swatch" ? (
-                            <span
-                              style={{ backgroundColor: item.value }}
-                            ></span>
-                          ) : (
-                            <span>{item.value}</span>
-                          )}
-                        </label>
-                      ))}
+                      {attribute.items.map((item, i) =>
+                        i === 0 ? (
+                          <label className="radio" key={item.id}>
+                            <input
+                              type="radio"
+                              name={attribute.name}
+                              value={item.value}
+                              data-attributetype={attribute.type}
+                              onChange={onRadioChangeHandler}
+                              checked
+                            />
+                            {attribute.type === "swatch" ? (
+                              <span
+                                style={{ backgroundColor: item.value }}
+                              ></span>
+                            ) : (
+                              <span>{item.value}</span>
+                            )}
+                          </label>
+                        ) : (
+                          <label className="radio" key={item.id}>
+                            <input
+                              type="radio"
+                              name={attribute.name}
+                              value={item.value}
+                              data-attributetype={attribute.type}
+                              onChange={onRadioChangeHandler}
+                            />
+                            {attribute.type === "swatch" ? (
+                              <span
+                                style={{ backgroundColor: item.value }}
+                              ></span>
+                            ) : (
+                              <span>{item.value}</span>
+                            )}
+                          </label>
+                        )
+                      )}
                     </div>
                   ))}
                   <div className="price mt-5 d-block">
                     <h3 className="text-uppercase">Prize:</h3>
-                    <span className="">
+                    <span>
                       {sym.currency.symbol} {sym.amount}
                     </span>
                   </div>
