@@ -7,7 +7,7 @@ import CurrencyList from "../CurrencyList";
 
 import { connect } from "react-redux";
 
-const Header = ({ cart }) => {
+const Header = ({ cart, currency }) => {
   const [cartCount, setCartCount] = useState(0);
   const [showMiniCart, setShowMiniCart] = useState(0);
   const [showCurrencyList, setShowCurrencyList] = useState(0);
@@ -77,7 +77,7 @@ const Header = ({ cart }) => {
                     className="dropdown-toggle"
                     onClick={showCurrencyListHandler}
                   >
-                    $
+                    {currency.symbol}
                   </a>
                   <CurrencyList showCurrencyList={showCurrencyList} />
                 </li>
@@ -107,6 +107,7 @@ const Header = ({ cart }) => {
 const mapStateToProps = (state) => {
   return {
     cart: state.shop.cart,
+    currency: state.shop.currency,
   };
 };
 

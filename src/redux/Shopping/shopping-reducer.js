@@ -63,6 +63,10 @@ const shopReducer = (state = INITIAL_STATE, action) => {
           ),
         };
       }
+    case actionTypes.SET_CURRENCY:
+      state.currency.symbol = action.payload.selectedCurrency.symbol;
+      state.currency.label = action.payload.selectedCurrency.label;
+      return state.currency;
     default:
       return state;
   }
