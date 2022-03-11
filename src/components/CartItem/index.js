@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import Button from "../../components/Button";
+import Attributes from "../Product/Attributes";
+
 import "./style.scss";
 
 import { connect } from "react-redux";
 import { adjustItemQty } from "../../redux/Shopping/shopping-actions";
 
-function CartItem({ cartItem, adjustQty, isMiniCart = false }) {
+function CartItem({ products, cartItem, adjustQty, isMiniCart = false }) {
   const [qty, setQty] = useState(cartItem.qty);
   const incrementQty = () => {
     const updatedQty = qty + 1;
@@ -17,7 +19,16 @@ function CartItem({ cartItem, adjustQty, isMiniCart = false }) {
     setQty(updatedQty);
     adjustQty(cartItem.id, updatedQty);
   };
-  const onRadioChangeHandler = () => {};
+
+  const productAllDetails = products.find(
+    (product) => product.id === cartItem.id
+  );
+
+  let selectedAttributes = [];
+  const attributeHandler = (attributes) => {
+    selectedAttributes = attributes;
+  };
+
   return (
     <div
       className={`row d-flex justify-content-between align-items-center ${
@@ -37,35 +48,11 @@ function CartItem({ cartItem, adjustQty, isMiniCart = false }) {
             {cartItem.prices[0].amount}
           </h3>
         </span>
-        {
-          //change this to selected radio later on
-        }
-        {Object.keys(cartItem.attributes).map((attribute) => (
-          <div
-            className="mt-1 d-block"
-            key={cartItem.attributes[attribute].key}
-          >
-            <h3>{cartItem.attributes[attribute].name}</h3>
-            <label className="radio">
-              <input
-                type="radio"
-                name={cartItem.attributes[attribute].key}
-                value={cartItem.attributes[attribute].value}
-                onChange={onRadioChangeHandler}
-                checked
-              />
-              {cartItem.attributes[attribute].type === "swatch" ? (
-                <span
-                  style={{
-                    backgroundColor: cartItem.attributes[attribute].value,
-                  }}
-                ></span>
-              ) : (
-                <span>{cartItem.attributes[attribute].value}</span>
-              )}
-            </label>
-          </div>
-        ))}
+        <Attributes
+          attributes={productAllDetails.attributes}
+          onChangeAttribute={attributeHandler}
+          cartSelectedAttributes={cartItem.attributes}
+        />
       </div>
       <div className="col-lg-1">
         <Button onClick={incrementQty}>
@@ -93,4 +80,10 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(CartItem);
+const mapStateToProps = (state) => {
+  return {
+    products: state.shop.products,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartItem);

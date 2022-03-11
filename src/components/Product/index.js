@@ -23,6 +23,7 @@ const Product = ({ product, addToCart, currency }) => {
     product;
 
   const sym = prices.find((price) => price.currency.symbol === currency.symbol);
+
   return (
     <div className="container  mb-5">
       <div className="row d-flex justify-content-center product-detail">

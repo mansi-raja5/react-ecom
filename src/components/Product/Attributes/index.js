@@ -2,6 +2,10 @@ import React, { useState } from "react";
 
 const Attributes = (props) => {
   const attributes = props.attributes;
+  const cartSelectedAttributes = props.cartSelectedAttributes
+    ? props.cartSelectedAttributes
+    : {};
+
   const defaultKey = attributes[0].id;
   let defaultAttribute = {};
   defaultAttribute[defaultKey] = {
@@ -23,48 +27,65 @@ const Attributes = (props) => {
       };
       return selectedAttributes;
     });
-    console.log(selectedAttributes);
     props.onChangeAttribute(selectedAttributes);
+  };
+
+  const inCartSelectedAttributes = (attName, attValue) => {
+    return cartSelectedAttributes.length
+      ? cartSelectedAttributes.find(
+          (cartSelectedAttribute) =>
+            cartSelectedAttribute.key === attName &&
+            cartSelectedAttribute.value === attValue
+        )
+      : false;
   };
   return (
     <div>
       {attributes.map((attribute) => (
         <div className="mt-5 d-block" key={attribute.id}>
           <h3 className="text-uppercase">{attribute.name}</h3>
-          {attribute.items.map((item, i) =>
-            i === 0 ? (
-              <label className="radio" key={item.id}>
-                <input
-                  type="radio"
-                  name={attribute.name}
-                  value={item.value}
-                  data-attributetype={attribute.type}
-                  onChange={onRadioChangeHandler}
-                  checked
-                />
-                {attribute.type === "swatch" ? (
-                  <span style={{ backgroundColor: item.value }}></span>
-                ) : (
-                  <span>{item.value}</span>
-                )}
-              </label>
-            ) : (
-              <label className="radio" key={item.id}>
-                <input
-                  type="radio"
-                  name={attribute.name}
-                  value={item.value}
-                  data-attributetype={attribute.type}
-                  onChange={onRadioChangeHandler}
-                />
-                {attribute.type === "swatch" ? (
-                  <span style={{ backgroundColor: item.value }}></span>
-                ) : (
-                  <span>{item.value}</span>
-                )}
-              </label>
-            )
-          )}
+          {attribute.items.map((item, i) => {
+            if (
+              (cartSelectedAttributes.length &&
+                inCartSelectedAttributes(attribute.id, item.id)) ||
+              (!cartSelectedAttributes.length && i === 0)
+            ) {
+              return (
+                <label className="radio" key={item.id}>
+                  <input
+                    type="radio"
+                    name={attribute.name}
+                    value={item.value}
+                    data-attributetype={attribute.type}
+                    onChange={onRadioChangeHandler}
+                    checked
+                  />
+                  {attribute.type === "swatch" ? (
+                    <span style={{ backgroundColor: item.value }}></span>
+                  ) : (
+                    <span>{item.value}</span>
+                  )}
+                </label>
+              );
+            } else {
+              return (
+                <label className="radio" key={item.id}>
+                  <input
+                    type="radio"
+                    name={attribute.name}
+                    value={item.value}
+                    data-attributetype={attribute.type}
+                    onChange={onRadioChangeHandler}
+                  />
+                  {attribute.type === "swatch" ? (
+                    <span style={{ backgroundColor: item.value }}></span>
+                  ) : (
+                    <span>{item.value}</span>
+                  )}
+                </label>
+              );
+            }
+          })}
         </div>
       ))}
     </div>
