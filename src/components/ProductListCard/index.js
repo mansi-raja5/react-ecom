@@ -16,7 +16,6 @@ const ProductListCard = ({ product, addToCart, currency }) => {
       value: attribute.items[0].value, //set first attribute vale as a default for now
     });
   });
-  // debugger;
   const sym = prices.find((price) => price.currency.symbol === currency.symbol);
   return (
     <div className="card m-5">
@@ -44,8 +43,7 @@ const ProductListCard = ({ product, addToCart, currency }) => {
           <Link to={`/product/${id}`}>{name}</Link>
         </span>
         <span className="fw-bolder d-block">
-          {sym.currency.symbol}
-          {sym.amount}
+          {sym.currency.symbol} {sym.amount}
         </span>
       </div>
     </div>

@@ -6,7 +6,7 @@ import "./style.scss";
 import { connect } from "react-redux";
 import { addToCart } from "../../redux/Shopping/shopping-actions";
 
-const Product = ({ product, addToCart }) => {
+const Product = ({ product, addToCart, currency }) => {
   const renderHTML = (rawHTML) =>
     React.createElement("p", {
       dangerouslySetInnerHTML: { __html: rawHTML },
@@ -27,6 +27,7 @@ const Product = ({ product, addToCart }) => {
       return selectedAttributes;
     });
   };
+  const sym = prices.find((price) => price.currency.symbol === currency.symbol);
   return (
     <div className="container mt-5 mb-5">
       <div className="row d-flex justify-content-center">
@@ -70,8 +71,7 @@ const Product = ({ product, addToCart }) => {
                   <div className="price mt-5 d-block">
                     <h3 className="text-uppercase">Prize:</h3>
                     <span className="">
-                      {prices[0].currency.symbol}
-                      {prices[0].amount}
+                      {sym.currency.symbol} {sym.amount}
                     </span>
                   </div>
                 </div>
@@ -102,4 +102,9 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Product);
+const mapStateToProps = (state) => {
+  return {
+    currency: state.shop.currency,
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Product);
