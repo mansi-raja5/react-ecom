@@ -17,8 +17,8 @@ const Product = ({ product, addToCart, currency }) => {
 
   const defaultAttribute = [
     {
-      key: attributes[0].items[0].id,
-      name: attributes[0].items[0].id,
+      key: attributes[0].id,
+      name: attributes[0].id,
       type: attributes[0].type,
       value: attributes[0].items[0].value,
     },
