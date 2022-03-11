@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./style.scss";
 
 const Attributes = (props) => {
   const attributes = props.attributes;
