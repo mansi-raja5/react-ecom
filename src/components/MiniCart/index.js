@@ -5,7 +5,6 @@ import { NavLink } from "react-router-dom";
 import CartItem from "../../components/CartItem";
 
 import { connect } from "react-redux";
-import { addToCart } from "../../redux/Shopping/shopping-actions";
 
 const MiniCart = ({ showMiniCart, cart, onVeiwBagData }) => {
   let bagSum = 0;

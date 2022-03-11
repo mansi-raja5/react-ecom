@@ -1,14 +1,18 @@
 .currency-list {
-  margin: 0;
   float: right;
   background: white;
-  width: 200px;
-  padding: 20px;
+  width: 120px;
   height: 200px;
-  overflow-y: scroll;
+  margin-right: 60px;
   li {
-    list-style-type: none;
     width: 100%;
+    margin: 0 !important;
+    padding: 10px !important;
     display: block;
+    cursor: pointer;
+
+    &:hover {
+      background: #8f9192;
+    }
   }
 }

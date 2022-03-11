@@ -1,5 +1,5 @@
 .header {
-  height: 6.5rem;
+  height: 65px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
 
   .logo {
@@ -31,16 +31,16 @@
     ul {
       li {
         display: inline-block;
-        margin: 0 1rem;
+        margin: 0 15px;
         list-style-type: none;
 
         &:first-child {
-          margin: 0;
+          margin-left: 0;
         }
 
         a {
-          font-size: 1.8rem;
-          line-height: 6.5rem;
+          font-size: 18px;
+          line-height: 65px;
           vertical-align: middle;
           color: #8f9192;
           text-decoration: none;
@@ -58,47 +58,41 @@
   }
 
   .actions {
-    margin: 2% 0;
+    margin: 5% 0;
     float: right;
-    ul,
-    li {
+    ul {
       margin: 0;
       padding: 0;
       float: right;
-    }
+      li {
+        margin: 0 15px;
+        display: inline-block;
+        list-style-type: none;
 
-    li {
-      display: inline-block;
-      list-style-type: none;
-      margin-right: 1.5rem;
-
-      &:last-child {
-        margin-right: 0;
-      }
-
-      a,
-      span {
-        font-size: 1.8rem;
-        line-height: 1;
-        color: #5ece7b;
-        text-decoration: none;
-        text-transform: uppercase;
-        cursor: pointer;
-      }
-
-      .cart {
-        .fa {
-          color: #000;
+        &:last-child {
+          margin-right: 0;
         }
-        .badge {
-          font-size: 12px;
-          background: #000;
-          color: #fff;
-          vertical-align: top;
-          padding: 6px 8px;
-          border-radius: 50%;
-          margin-top: -15px;
-          margin-left: -7px;
+
+        a,
+        span {
+          line-height: 1;
+          color: #8f9192;
+          text-decoration: none;
+          text-transform: uppercase;
+          cursor: pointer;
+        }
+
+        .cart {
+          .badge {
+            font-size: 12px;
+            background: #8f9192;
+            color: #fff;
+            vertical-align: top;
+            padding: 6px 8px;
+            border-radius: 50%;
+            margin-top: -15px;
+            margin-left: -7px;
+          }
         }
       }
     }

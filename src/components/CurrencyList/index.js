@@ -16,8 +16,7 @@ const CurrencyList = ({ showCurrencyList }) => {
       >
         <div className="container">
           <div className="currency-list">
-            <div className="row mt-1 mb-1"></div>
-            <ul className="mini-cart-items">
+            <ul>
               {data.currencies.length ? (
                 data.currencies.map((currency) => {
                   return (
