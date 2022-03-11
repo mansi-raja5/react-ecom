@@ -26,7 +26,6 @@ const Header = ({ cart, currency }) => {
   };
 
   const showCurrencyListHandler = () => {
-    console.log(showCurrencyList);
     setShowCurrencyList(showCurrencyList == 0 ? 1 : 0);
   };
 

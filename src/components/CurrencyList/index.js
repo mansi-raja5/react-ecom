@@ -17,8 +17,6 @@ const CurrencyList = ({ showCurrencyList, setCurrency, currency }) => {
       symbol: e.target.dataset.symbol,
       label: e.target.dataset.label,
     };
-    console.log("list");
-    console.log(selectedCurrency);
     setCurrency(selectedCurrency);
   };
   return (

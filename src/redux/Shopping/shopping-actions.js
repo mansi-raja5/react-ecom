@@ -31,8 +31,6 @@ export const adjustItemQty = (itemID, qty) => {
 };
 
 export const setCurrency = (selectedCurrency) => {
-  console.log("action");
-  console.log(selectedCurrency);
   return {
     type: actionTypes.SET_CURRENCY,
     payload: {
