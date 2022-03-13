@@ -8,7 +8,13 @@ import "./style.scss";
 import { connect } from "react-redux";
 import { adjustItemQty } from "../../redux/Shopping/shopping-actions";
 
-function CartItem({ products, cartItem, adjustQty, isMiniCart = false }) {
+function CartItem({
+  products,
+  cartItem,
+  adjustQty,
+  isMiniCart = false,
+  currency,
+}) {
   const [qty, setQty] = useState(cartItem.qty);
   const incrementQty = () => {
     const updatedQty = qty + 1;
@@ -27,6 +33,10 @@ function CartItem({ products, cartItem, adjustQty, isMiniCart = false }) {
 
   const attributeHandler = () => {};
 
+  const sym = cartItem.prices.find(
+    (price) => price.currency.symbol === currency.symbol
+  );
+
   return (
     <div
       className={`row d-flex justify-content-between align-items-center ${
@@ -44,8 +54,7 @@ function CartItem({ products, cartItem, adjustQty, isMiniCart = false }) {
         </span>
         <span className="text-uppercase mt-2 d-block">
           <h3 className="pb-2">
-            {cartItem.prices[0].currency.symbol}
-            {cartItem.prices[0].amount}
+            {sym.currency.symbol} {sym.amount}
           </h3>
         </span>
         <Attributes
@@ -86,6 +95,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     products: state.shop.products,
+    currency: state.shop.currency,
   };
 };
 

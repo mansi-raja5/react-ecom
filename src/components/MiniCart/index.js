@@ -6,8 +6,11 @@ import CartItem from "../../components/CartItem";
 
 import { connect } from "react-redux";
 
-const MiniCart = ({ showMiniCart, cart, onVeiwBagData }) => {
+const MiniCart = ({ showMiniCart, cart, onVeiwBagData, currency }) => {
   let bagSum = 0;
+  const sym = cart.length
+    ? cart[0].prices.find((price) => price.currency.symbol === currency.symbol)
+    : false;
   return (
     <div>
       <div
@@ -27,7 +30,7 @@ const MiniCart = ({ showMiniCart, cart, onVeiwBagData }) => {
             <ul className="mini-cart-items">
               {cart.length ? (
                 cart.map((cartItem) => {
-                  bagSum += cartItem.prices[0].amount * cartItem.qty;
+                  bagSum += sym.amount * cartItem.qty;
                   return (
                     <CartItem
                       key={cartItem.id}
@@ -49,7 +52,7 @@ const MiniCart = ({ showMiniCart, cart, onVeiwBagData }) => {
               <div className="col-lg-6">
                 <span className="float-end">
                   <b>
-                    {cart.length ? cart[0].prices[0].currency.symbol : ""}
+                    {sym ? sym.currency.symbol : ""}
                     {bagSum ? parseFloat(bagSum).toFixed(2) : ""}
                   </b>
                 </span>
@@ -86,6 +89,7 @@ const MiniCart = ({ showMiniCart, cart, onVeiwBagData }) => {
 const mapStateToProps = (state) => {
   return {
     cart: state.shop.cart,
+    currency: state.shop.currency,
   };
 };
 
