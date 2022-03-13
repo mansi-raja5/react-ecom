@@ -9,7 +9,7 @@ const ProductListCard = ({ product, addToCart, currency }) => {
   const { id, name, gallery, prices, attributes, inStock } = product;
   let selectedAttributes = [];
   attributes.map((attribute) => {
-    selectedAttributes.push({
+    return selectedAttributes.push({
       key: attribute.id,
       name: attribute.name,
       type: attribute.type,

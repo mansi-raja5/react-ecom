@@ -43,6 +43,7 @@ const Product = ({ product, addToCart, currency }) => {
                   </span>
                   <Attributes
                     attributes={attributes}
+                    productId={id}
                     onChangeAttribute={attributeHandler}
                   />
                   <div className="price mt-5 d-block">

@@ -24,10 +24,7 @@ function CartItem({ products, cartItem, adjustQty, isMiniCart = false }) {
     (product) => product.id === cartItem.id
   );
 
-  let selectedAttributes = [];
-  const attributeHandler = (attributes) => {
-    selectedAttributes = attributes;
-  };
+  const attributeHandler = () => {};
 
   return (
     <div
@@ -51,6 +48,7 @@ function CartItem({ products, cartItem, adjustQty, isMiniCart = false }) {
         <Attributes
           attributes={productAllDetails.attributes}
           onChangeAttribute={attributeHandler}
+          productId={productAllDetails.id}
           cartSelectedAttributes={cartItem.attributes}
         />
       </div>

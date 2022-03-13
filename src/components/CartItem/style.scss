@@ -54,7 +54,10 @@
     padding: 5px;
   }
   .radio {
-    padding: 0 5px;
+    padding: 0 2px;
+    &:first-child {
+      padding-left: 0 !important;
+    }
     span {
       padding: 5px 5px !important;
     }
