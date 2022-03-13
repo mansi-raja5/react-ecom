@@ -38,3 +38,14 @@ export const setCurrency = (selectedCurrency) => {
     },
   };
 };
+
+export const adjustAttributeValue = (itemID, attributeId, attributeValue) => {
+  return {
+    type: actionTypes.ADJUST_ATTRIBUTE_VALUE,
+    payload: {
+      id: itemID,
+      attributeId: attributeId,
+      attributeValue: attributeValue,
+    },
+  };
+};
