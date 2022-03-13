@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "../../components/Button";
 import Attributes from "../Product/Attributes";
+import { Link } from "react-router-dom";
 
 import "./style.scss";
 
@@ -33,9 +34,11 @@ function CartItem({ products, cartItem, adjustQty, isMiniCart = false }) {
       }`}
     >
       <div className={isMiniCart ? "col-lg-5" : "col-lg-9"}>
-        <span className="text-uppercase mt-5 d-block">
-          <h2>{cartItem.name}</h2>
-        </span>
+        <Link to={`/product/${productAllDetails.id}`}>
+          <span className="text-uppercase mt-5 d-block">
+            <h2>{cartItem.name}</h2>
+          </span>
+        </Link>
         <span className="text-uppercase text-muted mt-2 d-block">
           <h3>{cartItem.brand}</h3>
         </span>
@@ -62,11 +65,13 @@ function CartItem({ products, cartItem, adjustQty, isMiniCart = false }) {
         </Button>
       </div>
       <div className={isMiniCart ? "col-lg-5" : "col-lg-2"}>
-        <img
-          src={cartItem.gallery[0]}
-          className="img-fluid rounded-3"
-          alt={cartItem.name}
-        />
+        <Link to={`/product/${productAllDetails.id}`}>
+          <img
+            src={cartItem.gallery[0]}
+            className="img-fluid rounded-3"
+            alt={cartItem.name}
+          />
+        </Link>
       </div>
     </div>
   );

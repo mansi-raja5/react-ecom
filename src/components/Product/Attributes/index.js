@@ -41,9 +41,7 @@ const Attributes = (props) => {
       ? cartSelectedAttributes[radioName].value === attValue
       : false;
   };
-  // debugger;
-  console.log(111);
-  console.log(Object.keys(cartSelectedAttributes).length);
+
   return (
     <div>
       {attributes.map((attribute) => (
