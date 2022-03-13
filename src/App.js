@@ -37,9 +37,21 @@ const link = from([
   }),
 ]);
 
+const defaultOptions = {
+  watchQuery: {
+    fetchPolicy: "no-cache",
+    errorPolicy: "ignore",
+  },
+  query: {
+    fetchPolicy: "no-cache",
+    errorPolicy: "all",
+  },
+};
+
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: link,
+  defaultOptions: defaultOptions,
 });
 
 function App() {
