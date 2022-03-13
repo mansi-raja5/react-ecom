@@ -8,14 +8,18 @@ import { addToCart } from "../../redux/Shopping/shopping-actions";
 const ProductListCard = ({ product, addToCart, currency }) => {
   const { id, name, gallery, prices, attributes, inStock } = product;
   let selectedAttributes = [];
+
   attributes.map((attribute) => {
-    return selectedAttributes.push({
+    let defaultKey = product.id + "-" + attribute.id;
+    defaultKey = defaultKey.split(" ").join("-");
+    return (selectedAttributes[defaultKey] = {
       key: attribute.id,
       name: attribute.name,
       type: attribute.type,
       value: attribute.items[0].value, //set first attribute vale as a default for now
     });
   });
+
   const sym = prices.find((price) => price.currency.symbol === currency.symbol);
   return (
     <div className="card m-5">
