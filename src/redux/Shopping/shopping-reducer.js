@@ -68,11 +68,16 @@ const shopReducer = (state = INITIAL_STATE, action) => {
         ...state,
         cart: state.cart.map((item) =>
           item.id === action.payload.id
-            ? item.attributes.find(
-                (attribute) => attribute.id === action.payload.attributeId
-              )
-              ? { ...item, value: action.payload.attributeValue }
-              : item
+            ? {
+                ...item,
+                attributes: {
+                  ...item.attributes,
+                  [action.payload.attributeId]: {
+                    ...item.attributes[action.payload.attributeId],
+                    value: action.payload.attributeValue,
+                  },
+                },
+              }
             : item
         ),
       };
