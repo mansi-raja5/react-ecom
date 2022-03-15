@@ -10,6 +10,7 @@ export const LOAD_ALL_PRODUCTS = gql`
         inStock
         brand
         gallery
+        category
         prices {
           currency {
             symbol

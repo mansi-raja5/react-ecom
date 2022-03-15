@@ -15,7 +15,7 @@ const ProductList = ({ setAllProducts }) => {
 
   const { loading, error, data } = useQuery(LOAD_ALL_PRODUCTS, {
     variables: {
-      input: { title: "clothes" },
+      input: { title: "all" },
     },
   });
 
@@ -39,14 +39,19 @@ const ProductList = ({ setAllProducts }) => {
           </div>
           <div className="row">
             {products.map((product, index) => {
-              return (
-                <div
-                  className="col-lg-4 col-md-6 col-sm-6 col-xs-12"
-                  key={index}
-                >
-                  <ProductListCard product={product} />
-                </div>
-              );
+              if (
+                catID === "all" ||
+                (catID !== "all" && catID === product.category)
+              ) {
+                return (
+                  <div
+                    className="col-lg-4 col-md-6 col-sm-6 col-xs-12"
+                    key={index}
+                  >
+                    <ProductListCard product={product} />
+                  </div>
+                );
+              }
             })}
           </div>
         </div>
